@@ -1,6 +1,6 @@
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main_vpc.id
-        tags = {
+  tags = {
     Name        = "main-vpc-rt-public"
     Environment = "dev"
     Project     = "terraform-iac-challenge"
@@ -23,7 +23,7 @@ resource "aws_route_table_association" "public" {
 
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.main_vpc.id
-          tags = {
+  tags = {
     Name        = "main-vpc-rt-private"
     Environment = "dev"
     Project     = "terraform-iac-challenge"
