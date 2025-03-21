@@ -11,22 +11,14 @@ resource "aws_route" "public_internet_access" {
   route_table_id         = aws_route_table.public.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.internet_gw.id
-          tags = {
-    Name        = "main-vpc-route-public"
-    Environment = "dev"
-    Project     = "terraform-iac-challenge"
-  }
+
 }
 
 resource "aws_route_table_association" "public" {
   count          = length(aws_subnet.public)
   subnet_id      = aws_subnet.public[count.index].id
   route_table_id = aws_route_table.public.id
-          tags = {
-    Name        = "main-vpc-rt-association-public"
-    Environment = "dev"
-    Project     = "terraform-iac-challenge"
-  }
+
 }
 
 resource "aws_route_table" "private" {
@@ -42,9 +34,5 @@ resource "aws_route_table_association" "private" {
   count          = length(aws_subnet.private)
   subnet_id      = aws_subnet.private[count.index].id
   route_table_id = aws_route_table.private.id
-            tags = {
-    Name        = "main-vpc-rt-association-private"
-    Environment = "dev"
-    Project     = "terraform-iac-challenge"
-  }
+
 }
